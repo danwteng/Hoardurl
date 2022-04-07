@@ -6,10 +6,10 @@ import ListAllUrls from './components/ListAllUrls'
 function App(){
   return(
     <div className="router">
-      <Routes>
-        <Route path="/" element={<ListAllUrls/>}/>
-      </Routes>
-      {/* <ListAllUrls /> */}
+      {/* <Routes>
+        <Route path="/hoarding" element={<ListAllUrls/>}/>
+      </Routes> */}
+      <ListAllUrls />
     </div>
   )
 }

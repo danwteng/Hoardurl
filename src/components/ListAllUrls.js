@@ -4,10 +4,9 @@ const ListAllUrls = () => {
 
   const getAllUrls = async() =>{
     try {
-      const response = await fetch('/')
-      // const jsonData = await response.json()
-      console.log('DID IT WORK HERE?')
-      console.log('this is jsondata', response)
+      const response = await fetch('/hoarding')
+      const jsonData = await response.json()
+      console.log('this is jsondata', jsonData)
     } catch (error) {
       console.log(error.message)
     }
@@ -18,10 +17,11 @@ const ListAllUrls = () => {
   })
 
   return (<Fragment>
-    <h1>ALL HOARDED URLS</h1>
+  <h1>ALL HOARDED URLS</h1>
   <table className="table">
       <thead>
         <tr>
+          <td>ROW NUMBER</td>
           <td>Title</td>
           <td>Description</td>
           <td>URL</td>
