@@ -1,38 +1,68 @@
 import React, { Fragment, useEffect, useState } from 'react';
 
 const ListAllUrls = () => {
+  const [allUrls, setAllUrls] = useState([])
 
-  const getAllUrls = async() =>{
+  //delete Function to remove the entry
+
+  const deleteOneUrl = async (id) =>{
     try {
-      const response = await fetch('/hoarding')
-      const jsonData = await response.json()
-      console.log('this is jsondata', jsonData)
+      const deleteOneUrl = await fetch(`/hoarding/${id}`, {
+        method: "DELETE"
+      });
     } catch (error) {
       console.log(error.message)
     }
   }
 
+  //function to get data from database
+  const getAllUrls = async() =>{
+    try {
+      const response = await fetch('/hoarding')
+      const jsonData = await response.json()
+      // console.log('this is jsondata', jsonData)
+      setAllUrls(jsonData);
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
   useEffect(() => {
     getAllUrls();
-  })
+  },[]);
+
+
 
   return (<Fragment>
-  <h1>ALL HOARDED URLS</h1>
   <table className="table">
       <thead>
         <tr>
-          <td>ROW NUMBER</td>
           <td>Title</td>
           <td>Description</td>
           <td>URL</td>
         </tr>
       </thead>
       <tbody>
-        <tr>
+        {/* <tr>
           <td>Mark</td>
           <td>Otto</td>
           <td>@mdo</td>
-        </tr>
+        </tr> */}
+        {allUrls.map( allurls => (
+          <tr key={allurls.hoardedurls_id}>
+            {/* <td>{allurls.hoardedurls_id}</td> */}
+            <td>{allurls.title}</td>
+            <td>{allurls.description}</td>
+            <td>{allurls.url}</td>
+            <td>Edit</td>
+            <td>
+              <button 
+              className='delButton'
+              onClick={() => deleteOneUrl(allurls.hoardedurls_id)}>
+                Delete
+              </button>
+            </td>
+          </tr>
+        ))}
       </tbody>
     </table>
   </Fragment>

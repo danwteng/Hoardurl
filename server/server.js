@@ -7,6 +7,10 @@ app.use(express.json());
 
 app.use('/hoarding', router);
 
+app.use('/', (req, res) => {
+  res.sendStatus(200).sendFile(path.resolve(__dirname, './build/index.html'))
+})
+
 //Unknown Route Handler
 app.use((req, res) => res.sendStatus(404))
 
