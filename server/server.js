@@ -1,15 +1,18 @@
 const express = require("express");
-const router = require('./router')
+const path = require("path");
+const router = require('./router');
 const app = express();
 const PORT = 3000;
 
 app.use(express.json());
+app.use(express.static(path.resolve(__dirname, '../build')));
 
 app.use('/hoarding', router);
 
 app.use('/', (req, res) => {
-  res.sendStatus(200).sendFile(path.resolve(__dirname, './build/index.html'))
+  return res.status(200).sendFile(path.resolve(__dirname, '../build/index.html'))
 })
+
 
 //Unknown Route Handler
 app.use((req, res) => res.sendStatus(404))
