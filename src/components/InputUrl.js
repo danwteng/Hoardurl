@@ -7,41 +7,65 @@ const InputUrl = () => {
     description: "",
     url: ""
   })
+
+    //function to handle changes to the input field:
+    const handleChange = (event) =>{
+      const { value, name } = event.target
+      // console.log('THIS IS THE EVENT', event)
+      // console.log('content', name)
+      // console.log('value', value)
+      setEntry({
+        ...entry,
+        [name]: value
+      })
+      // console.log('ENTRY', entry)
+    }
   
   const submittingEntry = async e => {
-    e.preventDefault();
+    // e.preventDefault();
     try {
-      const body = { title }
-      const response = fetch('/hoarding',{
+      const body = {
+        title: entry.title,
+        description: entry.description,
+        url: entry.url,
+      }
+      
+      const response = await fetch('/hoarding',{
           method: "POST",
           headers: {"Content-Type": "application/json"},
           body: JSON.stringify(body),
       })
+
       console.log(response)
     } catch (error) {
         console.log(error.message)
     }
   }
 
+
   return (
     <Fragment>
-      <h1> HOARDING ALL THE URLS</h1>
+      <h1>HOARDUR(L)</h1>
+      <h2>What are you hoarding today?</h2>
       <form onSubmit={submittingEntry}>
           <input
             type="text" 
-            // placeholder="title" 
+            placeholder="title" 
             defaultValue={entry.title}
-            onChange={e => setEntry(e.target.value)}/>
+            name='title'
+            onChange={handleChange}/>
           <input
             type="text" 
-            // placeholder="description" 
+            placeholder="description" 
             defaultValue={entry.description}
-            onChange={e => setEntry(e.target.value)}/>
+            name='description'
+            onChange={handleChange}/>
           <input
             type="text" 
-            // placeholder="url" 
+            placeholder="url" 
             defaultValue={entry.url}
-            onChange={e => setEntry(e.target.value)}/>
+            name='url'
+            onChange={handleChange}/>
           <button>Add</button>
       </form>
     </Fragment>

@@ -1,9 +1,118 @@
-$primary-color: rgb(0, 221, 255);
-$secondary-color: grey;
+$primary-color: rgb(109, 157, 197);
+$secondary-color: rgb(223, 246, 245);
+$tertiary-color: rgb(174, 236, 239);
+$darkertertiary-color:rgb(129, 184, 188);
+
+td{
+  width: 100%;
+}
 
 body{
+  color: $secondary-color;
   background-color: $primary-color;
-  #table{
-    text-align: center;
+  display: grid;
+  .input{
+    // border: 1px solid;
+    // background-color: $secondary-color;
+    gap: 10px;
+    h1{
+      text-align: center;
+    }
+    h2{
+      text-align: center;
+    }
+    form{
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 10px 10px 10px;
+      
+      input{
+        width: 25%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: none;
+        border-radius: 4px;
+        background-color: $secondary-color;
+      }
+      
+      button{
+        color:rgb(100, 101, 102);
+        width: 5%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: none;
+        box-shadow: none;
+        border-radius: 4px;
+        background-color: $tertiary-color;
+      }
+
+      button:hover{
+        cursor: pointer;
+        color: $tertiary-color;
+        background-color: $darkertertiary-color;
+      }
+
+    }
+  }
+  .database{
+    text-align: left;
+    // border: 1px solid;
+    .table{
+      // display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      padding: 10px 10px 10px 10px;
+      width: 100%;
+
+      thead{
+        tr{
+          // display: flex;
+          border:1px solid;
+          justify-content: space-around;
+          // width: 25%;
+          padding: 12px 20px;
+          margin: 8px 0;
+          // background-color: white;
+          // width:100%
+        }
+      }
+      tbody{
+        // justify-content: space-around;
+        padding: 10px 10px 10px 10px;
+        // justify-content: center;
+        tr{
+          display: flex;
+          text-align: left;
+          justify-content: space-between;
+          // width: 25%;
+          padding: 12px 20px;
+          margin: 8px 0;
+          // background-color: white;
+          width:100%;
+          td{
+            .delButton{
+                color:rgb(100, 101, 102);
+                width: 20%;
+                padding: 12px 20px;
+                // margin: 8px 0;
+                box-sizing: border-box;
+                border: none;
+                box-shadow: none;
+                border-radius: 4px;
+                background-color: $tertiary-color;
+            }
+            .delButton:hover{
+              cursor: pointer;
+              color: $tertiary-color;
+              background-color: $darkertertiary-color;
+            }
+          }
+        }
+        
+      }
+      
+    }
   }
 }

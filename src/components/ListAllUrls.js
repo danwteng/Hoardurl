@@ -10,6 +10,8 @@ const ListAllUrls = () => {
       const deleteOneUrl = await fetch(`/hoarding/${id}`, {
         method: "DELETE"
       });
+      //shows just the ones that aren't being deleted
+      setAllUrls(allUrls.filter(url => url.hoardedurls_id !== id))
     } catch (error) {
       console.log(error.message)
     }
@@ -34,26 +36,20 @@ const ListAllUrls = () => {
 
   return (<Fragment>
   <table className="table">
-      <thead>
-        <tr>
-          <td>Title</td>
-          <td>Description</td>
-          <td>URL</td>
-        </tr>
-      </thead>
       <tbody>
-        {/* <tr>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr> */}
+        <tr>
+          <td><h3>Title</h3></td>
+          <td><h3>Description</h3></td>
+          <td><h3>URL</h3></td>
+          <td></td>
+        </tr>
         {allUrls.map( allurls => (
           <tr key={allurls.hoardedurls_id}>
             {/* <td>{allurls.hoardedurls_id}</td> */}
             <td>{allurls.title}</td>
             <td>{allurls.description}</td>
-            <td>{allurls.url}</td>
-            <td>Edit</td>
+            <td><a href={allurls.url} target="_blank">Link Here</a></td>
+            {/* <td>Edit</td> */}
             <td>
               <button 
               className='delButton'
